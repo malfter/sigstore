@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "editorconfig.editorconfig",
+        "yzhang.markdown-all-in-one",
+        "exiasr.hadolint",
+        "timonwong.shellcheck",
+        "gruntfuggly.todo-tree",
+        "ms-vscode.makefile-tools"
+    ]
+}
