@@ -18,6 +18,8 @@
     - [Policy Controller](#policy-controller)
   - [Further Links](#further-links)
   - [How to use this project](#how-to-use-this-project)
+    - [How to Sign OCI Images](#how-to-sign-oci-images)
+    - [How to run Sigstore locally](#how-to-run-sigstore-locally)
 
 ## The purpose of this project
 
@@ -106,6 +108,8 @@ Simple UI for searching Search the Rekor public transparency log
 
 ## How to use this project
 
+### How to Sign OCI Images
+
 A local OCI registry can be created using the `make local` command. Now that you're ready to play with the OCI registry, let's get started...
 
 ```bash
@@ -154,3 +158,7 @@ open https://search.sigstore.dev/?email=github@alfter-web.de
 skopeo inspect docker://localhost:5000/malfter/sigstore/hello-sigstore:latest
 skopeo inspect docker://localhost:5000/malfter/sigstore/hello-sigstore:sha256-<SIGN_SHA>.sig
 ```
+
+### How to run Sigstore locally
+
+[https://blog.sigstore.dev/a-guide-to-running-sigstore-locally-f312dfac0682/]

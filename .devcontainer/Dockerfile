@@ -6,6 +6,17 @@ RUN apt-get update \
 
 COPY etc/containers/registries.conf /etc/containers/registries.conf
 
+# Install k8s tools
+# - k3d     - https://k3d.io/stable/#releases
+# - helm    - https://helm.sh/docs/intro/install/
+# - kubectl - https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+# - k9s     - https://github.com/derailed/k9s
+RUN curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash \
+  && curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash \
+  && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
+  && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+  && curl -sS https://webinstall.dev/k9s | bash
+
 USER vscode
 
 COPY *.sh /tmp/.

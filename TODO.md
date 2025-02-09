@@ -13,7 +13,9 @@
 ## ReadItLater
 
 - [https://docs.sigstore.dev/about/threat-model/]
+- [https://github.com/sigstore/cosign/blob/main/doc/cosign_attest.md]
 
 ## Alternatives
 - [https://dlorenc.medium.com/notary-v2-and-cosign-b816658f044d]
+- [https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html]
 

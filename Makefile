@@ -13,6 +13,26 @@ help:  ## 💬 This help message
 local:  ## 🏗  Creates a local environment for tests
 	docker compose up -d
 
+.PHONY: k8s
+k8s:  ## ☸  Creates a local kubernetes for tests
+	# Fix Pods evicted due to lack of disk space
+	# https://k3d.io/v5.4.6/faq/faq/#pods-evicted-due-to-lack-of-disk-space
+	k3d cluster create --config ./.k3d/cluster.yaml \
+		--k3s-arg '--kubelet-arg=eviction-hard=imagefs.available<1%,nodefs.available<1%@agent:*' \
+		--k3s-arg '--kubelet-arg=eviction-minimum-reclaim=imagefs.available=1%,nodefs.available=1%@agent:*'
+
+.PHONY: install-sigstore
+install-sigstore:  ## ☸  Installs sigstore platform in k8s cluster
+	sudo ./sigstore/local/scripts/set-hosts-entries.sh 127.0.0.1
+	# https://artifacthub.io/packages/helm/sigstore/scaffold
+	helm repo add sigstore https://sigstore.github.io/helm-charts
+	helm upgrade \
+		-i scaffold \
+		sigstore/scaffold \
+		-n sigstore \
+		--create-namespace \
+		--values sigstore/local/helm/scaffold.values.yaml
+
 .PHONY: lint
 lint:  ## 🔎 Lint & format, will not fix but sets exit code on error
 	# Lint docker-compose.yml
@@ -63,3 +83,4 @@ push-latest:  ## 📤 Push container image to registry (tag: latest)
 clean:  ## 🧹 Clean up project
 	docker compose down -v
 	rm -rf ./oci-registry
+	k3d cluster delete --config .k3d/cluster.yaml
