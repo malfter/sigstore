@@ -8,7 +8,7 @@ COPY etc/containers/registries.conf /etc/containers/registries.conf
 
 USER vscode
 
-COPY *.sh /tmp/.
+COPY *.sh /tmp/
 ENV PATH="/home/vscode/.local/bin:${PATH}"
 RUN sudo chmod +x /tmp/*.sh \
   && /tmp/install-binary-manager.sh \
