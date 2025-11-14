@@ -1,7 +1,7 @@
 name: oci-registry
 services:
   registry-server:
-    image: registry:2.8.2
+    image: registry:3
     container_name: registry-server
     volumes:
       - ./.oci-registry/data:/var/lib/registry
