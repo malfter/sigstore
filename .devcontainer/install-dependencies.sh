@@ -3,5 +3,5 @@
 set -e
 
 # bin finds several matches, with `echo` we select the binary X
-echo 1 | bin install -f https://github.com/sigstore/cosign
+echo 1 | bin install -f https://github.com/sigstore/cosign/releases/tag/v2.6.1
 echo 1 | bin install -f https://github.com/sigstore/rekor
